@@ -9,7 +9,8 @@ import UserModel from '@/model/User';
 
 export async function POST(request: Request){
     await dbConnect();
-
+    console.log("request",request);
+    console.log("inside post route of sign up");
     try{
         const {username,email, password} = await request.json(); 
 
@@ -59,6 +60,7 @@ export async function POST(request: Request){
             })
 
             await newUser.save();
+            console.log("new user",newUser);
         }
         // send verfification email
         const emailResponse = await sendVerificationemail(
@@ -66,6 +68,7 @@ export async function POST(request: Request){
             username,
             verifyCode
         );
+        // console.log(emailResponse);
         if(!emailResponse.success){
             return Response.json({
                 success: false,
