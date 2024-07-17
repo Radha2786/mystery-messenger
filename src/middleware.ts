@@ -29,5 +29,4 @@ if(!token && url.pathname.startsWith('/dashboard')){
 
 return NextResponse.next(); // what's this
 
-
 }
